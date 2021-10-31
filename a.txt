@@ -1,0 +1,29 @@
+[info] Loading settings from plugins.sbt ...
+[info] Loading project definition from C:\Users\x03099\Documents\DONTDELETE\Classes\Cow Classes S1\CS478 Programming Languages\Homeworks\hw3-UnBothered1\project
+[info] Loading settings from build.sbt ...
+CS478: hw3 (EECS Tester 0.4.0 dev)
+UnBothered1
+Data source: hw3.tests (remote)
+Begin testing calculatorPolish at Fri Sep 07 03:10:35 EDT 2018
+......................................................................
+..............................................................
+Passed 132/132 tests in 0.231 seconds.
+Begin testing calculatorParens at Fri Sep 07 03:10:35 EDT 2018
+......................................................................
+..............................................................
+Passed 132/132 tests in 0.133 seconds.
+Begin testing calculatorStandard at Fri Sep 07 03:10:35 EDT 2018
+..
+Test #3 *** FAILED ***
+  str = "3*9!"
+  java.lang.NumberFormatException: For input string: "*"
+    at scala.collection.immutable.StringOps.toInt(StringOps.scala:29)
+    at calc0$1(hw3.scala:92)
+Test #4 *** FAILED ***
+  str = "9+8!"
+  java.lang.NumberFormatException: For input string: "+"
+    at scala.collection.immutable.StringOps.toInt(StringOps.scala:29)
+    at calc0$1(hw3.scala:92)
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+Passed 2/133 tests in 0.419 seconds.
