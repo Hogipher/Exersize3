@@ -85,7 +85,7 @@
       if (str.length == 2) (calc0(i)._1,i)
       else if (str.length == 4) (calc0(i+1)._1,i+1)
       else if (str.charAt(i+1) == '!') (0,0)
-      else if (str.charAt(i+1) == '*') {println(calc0(i)._1*calc0(i+2)._1);(calc0(i)._1*calc0(i+2)._1,calc1(i+2)._2)}
+      else if (str.charAt(i+1) == '*') {println(calc0(i)._1*calc0(i+2)._1);(calc0(i)._1*calc0(i+2)._1,/*calc1(i+2)._2*/0)}
       else if (str.charAt(i+1) == '+') (calc1(i)._1,calc1(i)._2)
       else if (str.charAt(i) == '(') (calc0(i)._1,calc0(i)._2)
       else (calc2(i+1)._1,calc2(i+1)._2)
