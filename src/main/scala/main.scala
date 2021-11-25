@@ -67,46 +67,46 @@
 //test("calculatorParens", calculatorParens _, "str")
 
   def calculatorStandard(str: String): Int = {
-    def calc2(i: Int): (Int, Int) = {
+    def calc2(i: Int): Int = {
       println(("calc2",i))
       // parse one or more level-1 expressions separated by +'s
-      if (str.length == 2) (calc0(i)._1,i)
-      else if (str.length == 4) (calc0(i+1)._1,i+1)
-      else if (str.charAt(i+1) == '!') (0,0)
-      else if (str.charAt(i+1) == '+') (calc1(i)._1+calc1(i+2)._1,calc1(i+2)._2)
-      else if (str.charAt(i+1) == '*') (calc1(i)._1,calc1(i)._2)
-      else if (str.charAt(i) == '(') (calc2(i+1)._1,calc2(i+1)._2)
-      else (calc2(i+1)._1,calc2(i+1)._2)
+      if (str.length == 2) calc0(i)
+      else if (str.length == 4) calc0(i+1)
+      else if (str.charAt(i+1) == '!') 0
+      else if (str.charAt(i+1) == '+') calc1(i)
+      else if (str.charAt(i+1) == '*') calc1(i)
+      else if (str.charAt(i) == '(') calc2(i+1)
+      else calc2(i+1)
     }
-    def calc1(i: Int): (Int, Int) = {
+    def calc1(i: Int): Int = {
       println(("calc1",i))
       // parse one or more level-0 expressions separated by *'s
       //if (str.charAt(i-1).isDigit && str.charAt(i+1).isDigit)
-      if (str.length == 2) (calc0(i)._1,i)
-      else if (str.length == 4) (calc0(i+1)._1,i+1)
-      else if (str.charAt(i+1) == '!') (0,0)
-      else if (str.charAt(i+1) == '*') {println(calc0(i)._1*calc0(i+2)._1);(calc0(i)._1*calc0(i+2)._1,/*calc1(i+2)._2*/0)}
-      else if (str.charAt(i+1) == '+') (calc1(i)._1,calc1(i)._2)
-      else if (str.charAt(i) == '(') (calc0(i)._1,calc0(i)._2)
-      else (calc2(i+1)._1,calc2(i+1)._2)
+      if (str.length == 2) calc0(i)
+      else if (str.length == 4) calc0(i+1)
+      else if (str.charAt(i+1) == '!') 0
+      else if (str.charAt(i+1) == '*') {println(calc0(i)*calc0(i+2));calc0(i)*calc0(i+2)}
+      else if (str.charAt(i+1) == '+') calc0(i)+calc0(i+2)
+      else if (str.charAt(i) == '(') calc0(i)
+      else calc2(i+1)
     }
-    def calc0(i: Int): (Int, Int) = {
+    def calc0(i: Int): Int = {
       println(("calc0",i))
       // parse a single digit, or a level-2 expression in parentheses
-      if (str.length == 2) (str.charAt(i).toString.toInt,i) //case with only one number
-      else if (str.length == 4) (str.charAt(i).toString.toInt,i)
-      else if (str.charAt(i) == '(') (calc2(i+1)._1,calc2(i+1)._2)
-      else if (str.charAt(i).isDigit) (str.charAt(i).toString.toInt,i+1)
+      if (str.length == 2) str.charAt(i).toString.toInt //case with only one number
+      else if (str.length == 4) str.charAt(i).toString.toInt
+      else if (str.charAt(i) == '(') calc2(i+1)
+      else if (str.charAt(i).isDigit) {println(("-isDig",i));str.charAt(i).toString.toInt}
       else { //phrase in parentheses
-        if (str.charAt(i+1) == '+') (calc2(i)._1,i+1)
-        else  (calc1(i)._1,i+1)
+        if (str.charAt(i+1) == '+') calc2(i)
+        else  calc1(i)
       }
     }
-    calc2(0)._1
+    calc2(0)
   }
   println("""
        ----------------------------------------""")
-  println("Results calculatorStandard: " + calculatorStandard("3*3"))
+  println("Results calculatorStandard: " + calculatorStandard("3+3"))
   //test("calculatorStandard", calculatorStandard _, "str")
   println("""
 RESULTS^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^RESULTS""")
