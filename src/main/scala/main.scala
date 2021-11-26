@@ -70,11 +70,35 @@
     def calc2(i: Int): Int = {
       println(("calc2",i))
       // parse one or more level-1 expressions separated by +'s
-      if (str.length == 2) calc0(i)
+      if (str.length == 1) calc0(i)
       else if (str.length == 4) calc0(i+1)
       else if (str.charAt(i+1) == '!') 0
-      else if (str.charAt(i+1) == '+') calc1(i)
-      else if (str.charAt(i+1) == '*') calc1(i)
+      else if (str.charAt(i+1) == '+') {
+        if ((str.charAt(i+4) == '+') || (str.charAt(i+3) == '+')){
+          var cutStr: String = ""
+          if (str.charAt(i+4) == '+') {cutStr = str.slice(i+5,str.length)}
+          else {cutStr = str.slice(i+4,str.length)}
+          calc1(i)+calculatorStandard(cutStr)
+        } else if ((str.charAt(i+4) == '*') || (str.charAt(i+3) == '*')){
+          var cutStr: String = ""
+          if (str.charAt(i+4) == '*') {cutStr = str.slice(i+5,str.length)}
+          else {cutStr = str.slice(i+4,str.length)}
+          calc1(i)*calculatorStandard(cutStr)
+        } else calc1(i)
+      }
+      else if (str.charAt(i+1) == '*') {
+        if ((str.charAt(i+4) == '+') || (str.charAt(i+3) == '+')){
+          var cutStr: String = ""
+          if (str.charAt(i+4) == '+') {cutStr = str.slice(i+5,str.length)}
+          else {cutStr = str.slice(i+4,str.length)}
+          calc1(i)+calculatorStandard(cutStr)
+        } else if ((str.charAt(i+4) == '*') || (str.charAt(i+3) == '*')){
+          var cutStr: String = ""
+          if (str.charAt(i+4) == '*') {cutStr = str.slice(i+5,str.length)}
+          else {cutStr = str.slice(i+4,str.length)}
+          calc1(i)*calculatorStandard(cutStr)
+        } else calc1(i)
+      }
       else if (str.charAt(i) == '(') calc2(i+1)
       else calc2(i+1)
     }
@@ -106,7 +130,7 @@
   }
   println("""
        ----------------------------------------""")
-  println("Results calculatorStandard: " + calculatorStandard("3+3"))
+  println("Results calculatorStandard: " + calculatorStandard("3+3*3"))
   //test("calculatorStandard", calculatorStandard _, "str")
   println("""
 RESULTS^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^RESULTS""")
